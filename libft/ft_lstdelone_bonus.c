@@ -6,11 +6,11 @@
 /*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 10:31:11 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/06/15 11:34:15 by pvieira-         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:50:18 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (lst)
 	{
