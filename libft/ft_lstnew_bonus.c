@@ -6,9 +6,11 @@
 /*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 09:46:27 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/06/15 20:20:49 by pvieira-         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:11:39 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 t_list	*ft_lstnew(void *content)
 {
