@@ -6,7 +6,7 @@
 #    By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/28 13:23:37 by pvieira-          #+#    #+#              #
-#    Updated: 2022/06/14 15:22:29 by pvieira-         ###   ########.fr        #
+#    Updated: 2022/06/15 21:43:55 by pvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,13 @@ SRCS	= ft_isprint.c ft_putnbr_fd.c ft_strmapi.c ft_itoa.c ft_putstr_fd.c\
 		  ft_tolower.c ft_isascii.c ft_putchar_fd.c ft_strlcpy.c ft_toupper.c\
 		  ft_isdigit.c ft_putendl_fd.c ft_strlen.c ft_split.c
 
-BONUS_SRCS =	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
-				ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c\
-				ft_lstmap.c
+BONUS_SRCS =	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
+				ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
+				ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 OBJS	= 	$(SRCS:.c=.o)
+
+OBJBNS	=	$(BONUS_SRCS:.c.o)
 
 NAME	= 	libft.a
 
@@ -43,11 +45,11 @@ $(NAME):	$(OBJS)
 
 all:		$(NAME)
 
-bonus: $(OBJS) $(BONUS_OBJS)
-			AR $(NAME) $(BONUS_OBJS)
+bonus: $(OBJBNS)
+			ar qs $(NAME) $(OBJBNS)
 
 clean:
-			$(RM) $(OBJS) $(BONUS_OBJS)
+			$(RM) $(OBJS) $(OBBNS)
 
 fclean:		clean
 			$(RM) $(NAME)
