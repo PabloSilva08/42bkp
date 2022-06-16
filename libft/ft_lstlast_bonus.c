@@ -6,7 +6,7 @@
 /*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:58:59 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/06/15 18:00:28 by pvieira-         ###   ########.fr       */
+/*   Updated: 2022/06/15 22:39:14 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	temp;
+	t_list	*temp;
 
 	temp = lst;
 	while (temp->next != NULL)
