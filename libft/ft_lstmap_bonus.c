@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
+/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 16:20:33 by vsergio           #+#    #+#             */
-/*   Updated: 2022/05/19 19:50:16 by vsergio          ###   ########.fr       */
+/*   Created: 2022/06/16 08:03:58 by pvieira-          #+#    #+#             */
+/*   Updated: 2022/06/16 09:23:57 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_list;
 	t_list	*new_node;
+	t_list	*pointer_begin;
 
-	new_list = NULL;
+	pointer_begin = NULL;
 	while (lst)
 	{
 		new_node = ft_lstnew(f(lst->content));
 		if (!new_node)
 		{
-			ft_lstclear(&new_list, del);
-			return (new_list);
+			ft_lstclear(&pointer_begin, del);
+			return (NULL);
 		}
-		ft_lstadd_back(&new_list, new_node);
+		ft_lstadd_back(&pointer_begin, new_node);
 		lst = lst->next;
 	}
-	return (new_list);
+	return (pointer_begin);
 }

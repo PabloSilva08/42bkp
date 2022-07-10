@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
+/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 18:30:37 by vsergio           #+#    #+#             */
-/*   Updated: 2022/05/09 18:35:37 by vsergio          ###   ########.fr       */
+/*   Created: 2022/05/04 12:08:32 by pvieira-          #+#    #+#             */
+/*   Updated: 2022/05/12 21:53:33 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	if ((c >= 0) && (c <= 127))
+	if ((c >= 0) && (c < 128))
 		return (1);
 	return (0);
 }

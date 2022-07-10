@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
+/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 12:28:59 by vsergio           #+#    #+#             */
-/*   Updated: 2022/05/21 02:23:32 by vsergio          ###   ########.fr       */
+/*   Created: 2022/05/21 08:43:00 by pvieira-          #+#    #+#             */
+/*   Updated: 2022/06/13 18:42:00 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*substr;
-	unsigned int	i_start;
-	unsigned int	i;
+	char			*pointer;
+	size_t			i;
+	size_t			j;
+	unsigned int	l_s;
 
 	if (!s)
 		return (NULL);
-	i = 0;
-	i_start = 0;
-	substr = (char *)malloc(len + 1);
-	if (substr == NULL)
+	l_s = (ft_strlen(s));
+	if (start > l_s)
+		return (ft_strdup(""));
+	if (len > l_s)
+		pointer = (char *)malloc (sizeof(*pointer) * (l_s + 1));
+	else
+		pointer = (char *)malloc (sizeof(*pointer) * (len +1));
+	if (!pointer)
 		return (NULL);
-	while (s[i] != '\0')
-	{
-		if (i >= start && i_start < len)
-			substr[i_start++] = s[i];
-		i++;
-	}
-	substr[i_start] = '\0';
-	return (substr);
+	i = 0;
+	j = start;
+	while (j < (start + len) && s[j] != '\0')
+		pointer[i++] = s[j++];
+	pointer[i] = '\0';
+	return (pointer);
 }

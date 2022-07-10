@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguedes <lguedes@student.42.rio>           +#+  +:+       +#+        */
+/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 18:50:47 by lguedes           #+#    #+#             */
-/*   Updated: 2022/05/15 19:30:42 by vsergio          ###   ########.fr       */
+/*   Created: 2022/05/20 10:16:16 by pvieira-          #+#    #+#             */
+/*   Updated: 2022/05/22 17:13:13 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int	res;
-	int	i;
-	int	sign;
+#include "libft.h"
 
-	i = 0;
-	res = 0;
+int	ft_atoi(const char *nptr)
+{
+	size_t	i;
+	int		sign;
+	int		result;
+
+	result = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
-		|| str[i] == '\v' || str[i] == '\f')
-			i++;
-	if (str[i] == '-' || str[i] == '+')
+	i = 0;
+	while ((nptr[i] > 8 && nptr[i] < 14) || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (str[i] == '-')
-			sign *= -1;
+		if (nptr[i] == '-')
+			sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		res = res * 10 + str[i] - '0';
+		result = (nptr[i] - '0') + (result * 10);
 		i++;
 	}
-	return (sign * res);
+	return (result * sign);
 }

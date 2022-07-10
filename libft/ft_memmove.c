@@ -3,39 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
+/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 09:45:26 by vsergio           #+#    #+#             */
-/*   Updated: 2022/05/17 16:42:05 by vsergio          ###   ########.fr       */
+/*   Created: 2022/05/09 08:40:11 by pvieira-          #+#    #+#             */
+/*   Updated: 2022/06/12 17:40:23 by pvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char		*dest;
-	const char	*sorc;
-	char		*lastd;
-	const char	*lasts;
+	char		*s;
+	char		*d;
+	size_t		i;
 
-	dest = dst;
-	sorc = src;
-	if (dst == NULL && src == NULL)
-		return (0);
-	if (dest < sorc)
-	{
-		while (len-- > 0)
-		{
-			*dest++ = *sorc++;
-		}
-	}
+	if (!dest && !src)
+		return (NULL);
+	s = (char *)src;
+	d = (char *)dest;
+	i = 0;
+	if (d > s)
+		while (n-- > 0)
+			d[n] = s[n];
 	else
 	{
-		lastd = dest + (len - 1);
-		lasts = sorc + (len - 1);
-		while (len-- > 0)
-			*lastd-- = *lasts--;
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
 	}
-	return (dst);
+	return (dest);
 }
