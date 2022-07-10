@@ -3,85 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: lguedes <lguedes@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 06:56:30 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/05/26 21:04:24 by pvieira-         ###   ########.fr       */
+/*   Created: 2022/05/23 18:55:29 by lguedes           #+#    #+#             */
+/*   Updated: 2022/05/24 12:27:52 by lguedes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_num_size(long int num)
+static int	len(long int nb)
 {
-	int	count;
+	int		len;
 
-	count = 0;
-	if (num == 0)
-		count++;
-	while (num != 0)
+	len = 0;
+	if (nb <= 0)
 	{
-		num = num / 10;
-		count++;
+		nb *= -1;
+		len++;
 	}
-	return (count);
+	while (nb > 0)
+	{
+		nb /= 10;
+		len++;
+	}
+	return (len);
 }
 
-static	char	*ft_itoan(long int num)
+static char	*if_zero(char *str)
 {
-	int		i;
-	int		ln_size;
-	char	*pointer;
-
-	num = -1 * num;
-	ln_size = ft_num_size(num);
-	pointer = (char *)malloc(ln_size + 1 + 1);
-	if (!pointer)
-		return (NULL);
-	pointer[0] = '-';
-	i = 1;
-	while (ln_size > 0)
-	{
-		pointer[ln_size] = (num % 10 + 48);
-		num = num / 10;
-		ln_size--;
-		i++;
-	}
-	pointer[i] = '\0';
-	return (pointer);
-}
-
-static	char	*ft_itoap(long int num)
-{
-	int		i;
-	int		ln_size;
-	char	*pointer;
-
-	ln_size = ft_num_size(num);
-	pointer = (char *)malloc(ln_size + 1);
-	if (!pointer)
-		return (NULL);
-	i = 0;
-	while ((ln_size - 1) >= 0)
-	{
-		pointer[ln_size - 1] = (num % 10 + 48);
-		num = num / 10;
-		ln_size--;
-		i++;
-	}
-	pointer[i] = '\0';
-	return (pointer);
+	str[0] = '0';
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	long int	num;
-	char		*pointer;
+	char		*str;
+	long int	i;
+	long int	nbr;
 
-	num = (long int)n;
-	if (num < 0)
-		pointer = ft_itoan(num);
-	else
-		pointer = ft_itoap(num);
-	return (pointer);
+	nbr = n;
+	i = len(nbr);
+	str = (char *) malloc(sizeof(char) * (i + 1));
+	if (str == NULL)
+		return (NULL);
+	str[i--] = '\0';
+	if (nbr == 0)
+		if_zero(str);
+	if (nbr < 0)
+	{
+		str[0] = '-';
+		nbr *= -1;
+	}
+	while (nbr > 0)
+	{
+		str[i--] = 48 + (nbr % 10);
+		nbr /= 10;
+	}
+	return (str);
 }

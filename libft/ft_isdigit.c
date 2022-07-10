@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 23:02:02 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/05/07 14:11:25 by pvieira-         ###   ########.fr       */
+/*   Created: 2022/05/03 12:16:09 by vsergio           #+#    #+#             */
+/*   Updated: 2022/05/09 18:39:49 by vsergio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+int	ft_isdigit(int a)
 {
-	if (c >= 48 && c <= 57)
+	if (a >= '0' && a <= '9')
+	{
 		return (1);
-	return (0);
+	}
+	else
+	{
+		return (0);
+	}
 }

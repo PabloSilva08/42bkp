@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 11:18:15 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/07/09 10:12:07 by pvieira-         ###   ########.fr       */
+/*   Created: 2022/05/19 13:48:06 by vsergio           #+#    #+#             */
+/*   Updated: 2022/05/19 16:09:56 by vsergio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	count;
+	t_list	*start_node;
 	t_list	*temp;
 
-	count = 1;
-	temp = lst;
-	if (lst == NULL)
-		return (0);
-	while (temp->next != NULL)
+	if (!del || !lst)
+		return ;
+	start_node = *lst;
+	while (start_node)
 	{
-		count++;
-		temp = temp->next;
+		temp = start_node->next;
+		ft_lstdelone(start_node, del);
+		start_node = temp;
 	}
-	return (count);
+	*lst = NULL;
 }

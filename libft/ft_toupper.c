@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rwallier <rwallier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/11 20:44:44 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/05/13 16:59:56 by pvieira-         ###   ########.fr       */
+/*   Created: 2022/05/07 02:04:12 by rwallier          #+#    #+#             */
+/*   Updated: 2022/05/09 23:40:36 by vsergio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
-	if (c >= 97 && c <= 122)
-		return (c - 32);
+	if (c >= 'a' && c <= 'z')
+		return ((c - 32));
 	return (c);
 }

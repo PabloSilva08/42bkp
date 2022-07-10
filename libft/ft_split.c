@@ -3,94 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 16:30:13 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/06/13 19:23:41 by pvieira-         ###   ########.fr       */
+/*   Created: 2022/05/17 11:35:39 by vsergio           #+#    #+#             */
+/*   Updated: 2022/05/21 00:22:07 by vsergio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-static int	count_w(char const *s, char c)
-{
-	int		count;
-	size_t	i;
-	int		mk;
-
-	i = 0;
-	count = 0;
-	mk = 0;
-	while (s[i] != '\0')
-	{
-		while ((s[i] == c) && (s[i] != '\0'))
-			i++;
-		while ((s[i] != c) && (s[i] != '\0'))
-		{
-			mk = 1;
-			i++;
-		}
-		if (mk == 1)
-			count++;
-		mk = 0;
-	}
-	return (count);
-}
-
-static	int	count_l(char const *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != c && s[i] != '\0')
-		i++;
-	return (i);
-}
-
-static	char	**testpointer(char **pointer, size_t i)
-{
-	while (i > 0)
-	{
-		free(pointer[i - 1]);
-		i--;
-	}
-	free(pointer);
-	return (NULL);
-}
-
-static	char	**split(char const *s, size_t c_w, char **pointer, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < c_w)
-	{
-		while (*s == c && *s)
-			s++;
-		if (*s)
-		{
-			pointer[i] = ft_substr(s, 0, count_l(s, c));
-			if (!pointer[i])
-				return (testpointer(pointer, i));
-		}
-		s = s + count_l(s, c);
-		i++;
-	}
-	return (pointer);
-}
+static int	count_splits(char *s, char c);
+static int	sub_len(char *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
-	char	**pointer;
-	char	**p2;
-	size_t	c_w;
+	char	**final;
+	int		splits;
+	int		offset;
+	int		substring;
+	char	*str;
 
 	if (!s)
 		return (NULL);
-	c_w = count_w(s, c);
-	pointer = malloc(sizeof(char *) * (c_w + 1));
-	if (!pointer)
+	str = (char *)s;
+	offset = 0;
+	splits = count_splits(str, c);
+	final = malloc(sizeof(char *) * (splits + 1));
+	if (final == NULL)
 		return (NULL);
-	pointer[c_w] = NULL;
-	p2 = split(s, c_w, pointer, c);
-	return (p2);
+	final[splits] = NULL;
+	while (offset < splits)
+	{
+		while (*str != '\0' && *str == c)
+			str++;
+		substring = sub_len(str, c);
+		final[offset++] = ft_substr(str, 0, substring);
+		str += substring;
+	}
+	return (final);
+}
+
+static int	count_splits(char *str, char c)
+{
+	int	sublen;
+	int	splitnum;
+
+	splitnum = 0;
+	while (*str != '\0')
+	{
+		while (*str && *str == c)
+			str++;
+		sublen = sub_len(str, c);
+		str += sublen;
+		if (sublen)
+			splitnum++;
+	}
+	return (splitnum);
+}
+
+static int	sub_len(char *str, char c)
+{
+	int	len;
+
+	len = 0;
+	while (*str != '\0' && *str != c)
+	{
+		str++;
+		len++;
+	}
+	return (len);
 }

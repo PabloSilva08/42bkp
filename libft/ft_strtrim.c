@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pvieira- <pvieira-@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vsergio <vsergio@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 12:43:35 by pvieira-          #+#    #+#             */
-/*   Updated: 2022/06/14 08:40:20 by pvieira-         ###   ########.fr       */
+/*   Created: 2022/05/13 09:20:23 by vsergio           #+#    #+#             */
+/*   Updated: 2022/05/21 02:23:16 by vsergio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	l_s1;
-	char	*pointer;
+	char	*str1;
+	int		i_start;
+	int		i_end;
 
-	if (!s1 || !set)
+	if (!s1)
 		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-			s1++;
-	l_s1 = ft_strlen(s1);
-	while (l_s1 > 0 && ft_strchr(set, s1[l_s1]))
-		l_s1--;
-	pointer = ft_substr(s1, 0, (l_s1 + 1));
-	return (pointer);
+	i_end = ft_strlen(s1) - 1;
+	i_start = 0;
+	while (s1[i_start] != '\0' && ft_strchr(set, s1[i_start]))
+	{
+		i_start++;
+	}
+	while (s1[i_end] != '\0' && ft_strchr(set, s1[i_end]) && i_end > i_start)
+	{
+		i_end--;
+	}
+	str1 = ft_substr(s1, i_start, i_end - i_start + 1);
+	return (str1);
 }
